@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./src/watcher.js"></script>
+    <script src="./src/observe.js"></script>
+    <script src="./src/compile.js"></script>
+    <script src="./src/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+      <p>不需要解析的文本节点</p>
+      <p>{{msg}}</p>
+      <p>{{car.name}}</p>
+      <p v-text="car.name"></p>
+      <p v-text="msg" title="haha"></p>
+      <p v-html="tag" title="haha"></p>
+      <input type="text" v-model="msg">
+      <button v-on:click="clickFn">按钮</button>
+  </div>  
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'hello vue',
+            tag: '<h3>哈哈</h3>',
+            car: {
+                name: '日产',
+                color: 'white'
+            }
+        },
+        methods: {
+            clickFn () {
+                //vue的methods中this应该指向当前实例
+                //此this指向已经改变  指向vm实例
+                this.msg = '哈哈'
+                this.car.name = '奔驰'
+            }
+        }
+    })
+//console.log(vm)
+
+
+</script>
+</html>
